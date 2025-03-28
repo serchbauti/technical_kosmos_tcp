@@ -34,7 +34,7 @@ Esta es una aplicación sencilla que simula un servidor TCP en FastAPI, se prese
 1. Inicia el servidor FastAPI usando Uvicorn:
 
    ```bash
-   uvicorn app.main:app --reload
+   uvicorn app.main:app --host 0.0.0.0 --port 5000
    ```
 
 2. Abre tu navegador web y navega a `http://127.0.0.1:8000` para acceder a la aplicación.
