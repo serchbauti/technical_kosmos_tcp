@@ -37,10 +37,13 @@ async def receipt_message(request: Request, message: str = Form(...)):
         TemplateResponse: Renders the 'index.html' template with the
         processed response, original message, and updated message history.
     """
+    print(f"Mensaje recibido: {message}")
     if message in ["DESCONEXION", "desconexion"]:
         response = "Desconectado"
+        print(f"Cliente desconectado: {message}")
     else:
         response = message.upper()
+        print(f"Respuesta al cliente: {response}")
     message_history.append({"user": message, "response": response})
     return templates.TemplateResponse("index.html", {
         "request": request,
@@ -48,3 +51,9 @@ async def receipt_message(request: Request, message: str = Form(...)):
         "message": message,
         "message_history": message_history
     })
+
+if __name__ == "__main__":
+    import uvicorn
+    print("Servidor iniciado...")
+    print("Escuchando en el puerto 5000...")
+    uvicorn.run(app, host="0.0.0.0", port=5000)
